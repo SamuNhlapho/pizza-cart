@@ -1,0 +1,40 @@
+.slogan {font-style: italic;
+}
+.heading {text-align: center;
+}
+.toppings {text-align: center;}
+
+.diftoppings {background-color: #E5E059;
+    margin: 1em;
+padding: 1em;
+border-radius: 1em;
+border: 3.5px solid;
+border-color: #EB8A90;
+flex: 1;}
+
+.size{background-color: #999799;
+    margin: 1em;
+    padding: 1em;
+    border-radius: 1em;
+    border: 3.5px solid;
+    flex: 1;
+    border-color: #EB8A90;}
+
+    @media (min-width : 960px) {
+        .Size {display: flex;}
+    }
+   
+    body {background-color: #01BAEF;
+    font-family: Georgia, 'Times New Roman', Times, serif;}
+
+    .contact {background-color: #EB8A90;
+        margin: 1em;
+    padding: 1em;
+    border-radius: 1em;
+    border: 3px solid;
+    border-color: #E5E059;
+}
+
+    @media (min-width : 960px) {
+        .Toppings {display: flex;}
+    }

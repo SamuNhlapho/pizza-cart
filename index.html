@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perfect Pizza</title>
+  <link href="pizza.css" rel="stylesheet"/>  
+  <script src="cart.js" ></script>
+  <script src="https://unpkg.com/alpinejs" defer></script>
+</head>
+
+<body>
+    <section class="heading">
+        <h1>PERFECT PIZZA</h1>
+        <p class="slogan">Picture Pizza Perfect </p>
+    </section>
+
+    <div x-data="pizza" class="cart">
+    <section class="Size">
+        <section class="size">
+            <h2>Small pizza</h2>
+            <div>Thick/thin base small pizza with 2 toppings and our home secret pizza sause</div>
+            <figure>
+            <img src="small pizza.jpg" width="115">
+          <figcaption>Small <em>Pepperoni</em> Pizza.</figcaption>  
+          R50.00 
+        </figure>
+<br>
+            <button class="button" @click="addSmallPizza">Add to cart</button> 
+        </section>
+
+        <section class="size">
+            <h2> Medium pizza</h2>
+            <div>Thick/thin base medium pizza with 3 toppings and our home secret pizza sause</div>
+            <figure>
+                <img src="Medium pizza.jpg" width="175">
+                <figcaption>Medium <em>Chicken</em> Pizza.</figcaption>  
+                R85.00
+              </figure>
+              <br>
+                <button class="button" @click="addMediumPizza">Add to cart</button> 
+            </section>
+
+            <section class="size">
+                <h2> Large pizza</h2>
+                <div>Thick/thin base large pizza with 5 toppings and our home secret pizza sause</div>
+                <figure>
+          <img src="large pizza.jpg" width="150">
+          <figcaption>Large <em>Vegetable</em> Pizza.</figcaption>  
+          R130.00
+        </figure>
+        <br>
+            <button class="button" @click="addLargePizza">Add to cart</button> 
+                </section>
+    </section>
+
+        <h2> Available toppings</h2>
+
+        <section class="Toppings">
+
+            <div class="diftoppings"> 
+                <h3>Meaty toppings</h3>`
+                <form>
+                    <label><input type="checkbox" id="topping" name="toppings[]" value="Chicken">Chicken </label>
+                    <label><input type="checkbox" id="topping" name="toppings[]" value="Ham"> Ham</label>
+                    <label><input type="checkbox" id="topping" name="toppings[]" value="Beef"> Beef</label>
+                    <label><input type="checkbox" id="topping" name="toppings[]" value="Bacon">Bacon </label>
+                    <label> <input type="checkbox" id="topping" name="toppings[]" value="Pepperoni">Pepperoni </label>
+                </form>
+            </div>
+        
+            <div class="diftoppings"> 
+                <h3>Vegetable toppings</h3>
+                    <form>
+                        <label><input type="checkbox" id="topping" name="toppings[]" value="Tomato">Tomato</label>
+                        <label><input type="checkbox" id="topping" name="toppings[]" value="Pepper">Pepper</label>
+                        <label><input type="checkbox" id="topping" name="toppings[]" value="Zucchini">Zucchini</label>
+                        <label><input type="checkbox" id="topping" name="toppings[]" value="Mushroom">Mushroom </label>
+                        <label> <input type="checkbox" id="topping" name="toppings[]" value="Onion">Onion</label>
+                    </form>
+            </div>
+        
+            <div class="diftoppings"> 
+                <h3>Other toppings</h3>
+                    <label><input type="checkbox" x-model="selectedToppings" id="topping" name="toppings[]" value="Cheese">Cheese</label>
+                    <label><input type="checkbox" x-model="selectedToppings"id="topping" name="toppings[]" value="Pineapple">Pineapple</label>
+                </div>
+        </section>
+    
+  
+    <section id="cart" class="Pizza">
+
+        <div x-data="showCart=true">
+        <strong x-show="totalQuantity()>0">
+            <div>Total price: R<span x-text="cartTotal().toFixed(2)"></span></div>
+        </strong>
+        </div>
+
+        <div>
+            <div x-show="showCart">
+                <div>
+                    <table>
+                        <tr>
+                            <td>
+                              <img src="cart.png" width="60" alt=Cart>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr x-show="smallPizzaQuantity>0">
+                            <td>
+                                Small Pizza
+                            </td>
+                            <td>
+                                <span x-text="smallPizzaQuantity"> </span>
+                                <button x-show="smallPizzaQuantity>0" x-on:click="addSmallPizza">+</button>
+                                <button x-show="smallPizzaQuantity>0" x-on:click="removeSmallPizza">-</button>
+                            </td>
+                            <td>
+                                R<span x-text=" smallPizzaTotal.toFixed(2)"></span>
+                            </td>
+                        </tr>
+                        <tr x-show=" mediumPizzaQuantity>0">
+                            <td>
+                                Medium Pizza
+                            </td>
+                            <td>
+                                <span x-text="mediumPizzaQuantity"></span>
+                                <button x-show="mediumPizzaQuantity>0" x-on:click="addMediumPizza">+</button>
+                                <button x-show="mediumPizzaQuantity>0" x-on:click="removeMediumPizza">-</button>
+                            </td>
+                            <td>
+                                R<span x-text="mediumPizzaTotal.toFixed(2)"></span>
+                            </td>
+                        </tr>
+                        <tr x-show="largePizzaQuantity>0">
+                            <td>
+                                Large Pizza
+                            </td>
+                            <td>
+                                <span x-text="largePizzaQuantity"></span>
+                                <button x-show="largePizzaQuantity>0" x-on:click="addLargePizza">+</button>
+                                <button x-show="largePizzaQuantity>0" x-on:click="removeLargePizza">-</button>
+                            </td>
+                            <td>
+                                R<span x-text="largePizzaTotal.toFixed(2)"></span>
+                            </td>
+                        </tr>
+        
+                        <tr>
+                            <td>Total</td>
+                            <td>
+                                R<span x-text="cartTotal().toFixed(2)"></span>
+                            </td>
+                        </tr>
+                        <tr x-show="totalQuantity()>0">
+                            <td>
+                                <div x-show="payNow">
+                                    <div class="message" x-text="paymentMessage"></div>
+                                    <div>
+                                        <div>
+                                            <label for="">Enter Payment Amount
+                                            <input class="input" type="number" x-model="paymentAmount"></label>
+                                        </div><br>
+                                        <div>
+                                            <button x-on:click="makePayment">Pay Now</button>
+                                        </div>
+        
+                                    </div>
+                                </div>
+        
+                            <td>
+                                <button x-show="!payNow" x-on:click="payNow=true">
+                                    <img src="checkout.png" width="60px" alt="checkout">
+                                </button>
+                            </td>
+                            </td>
+                        </tr>
+                    </table>
+        
+                </div>
+            </div>
+        
+        </div>
+        
+        
+        </section>
+        </div>
+
+
+<section class="contact">
+    <footer>
+        <h2>Contact details</h2>
+        contact number: 011 870 1456
+        facebook: Picture Pizza Perfect
+        instagram: Picture Pizza Perfect
+        website: www.PerfectPizza.ac.za
+    </footer>
+</section>
+
+<script src="cart.js" defer></script>
+<script src="https://unpkg.com/alpinejs" defer></script>
+
+</body>
+</html>
